@@ -1,5 +1,7 @@
 <template>
   <div class="home">
+    <web-title></web-title>
+    <web-tips></web-tips>
     <ion-grid class="task-full">
       <ion-row class="task-full">
         <ion-col v-for="i in [0, 1, 2]" :key="i" :class="imgClass(i)"
@@ -23,11 +25,15 @@
 // @ is an alias to /src
 import { Component, Vue } from 'vue-property-decorator'
 import HelloWorld from '@/components/HelloWorld.vue'
+import WebTitle from '@/components/WebTitle.vue'
+import WebTips from "@/components/WebTips.vue";
 
 @Component({
   name: 'home',
   components: {
-    HelloWorld
+    HelloWorld,
+    WebTitle,
+    WebTips,
   }
 })
 export default class Home extends Vue{

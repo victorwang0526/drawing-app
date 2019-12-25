@@ -8,22 +8,7 @@
               <ion-label>图纸</ion-label>
             </ion-segment-button>
           </ion-segment>
-          <ion-button fill="clear">
-            <ion-icon slot="icon-only" name="add"></ion-icon>
-          </ion-button>
-          <ion-button fill="clear">
-            <ion-icon slot="icon-only" name="remove"></ion-icon>
-          </ion-button>
-          <ion-button fill="clear">
-            <ion-icon slot="icon-only" name="redo"></ion-icon>
-          </ion-button>
-          <ion-button fill="clear">
-            <ion-icon slot="icon-only" name="undo"></ion-icon>
-          </ion-button>
-
-          <div style="width: 100%; height: 100%; background-color: #2c3e50; margin:.1rem; padding: 1rem;">
-            <img src="../assets/1.png">
-          </div>
+          <drawing></drawing>
         </ion-col>
         <ion-col>
           <ion-segment color="success" @ionChange="tab2Change($event)">
@@ -32,6 +17,7 @@
             </ion-segment-button>
             <ion-segment-button value="t2"><ion-label>操作图纸</ion-label></ion-segment-button>
           </ion-segment>
+          <drawing></drawing>
         </ion-col>
       </ion-row>
     </ion-grid>
@@ -40,9 +26,13 @@
 <script lang="ts">
 
 import {Vue, Component} from "vue-property-decorator";
+import Drawing from '@/components/Drawing.vue'
 
 @Component({
-    name: 'task-detail'
+    name: 'task-detail',
+    components: {
+        Drawing
+    }
 })
 export default class TaskDetail extends Vue {
 
