@@ -1,0 +1,7 @@
+{
+  "appId": "victor.wang.drawing.app",
+  "appName": "drawing-app",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "dist"
+}
