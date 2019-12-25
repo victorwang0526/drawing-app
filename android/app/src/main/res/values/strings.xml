@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">drawing-app</string>
+    <string name="title_activity_main">drawing-app</string>
+    <string name="package_name">victor.wang.drawing.app</string>
+    <string name="custom_url_scheme">victor.wang.drawing.app</string>
+</resources>
