@@ -47,8 +47,17 @@ export default class extends Vue{
     width: 100%;
     height: 100%;
     background-color: #2c3e50;
-    margin:.1rem;
-    padding: 1rem;
+    /*margin:.1rem;*/
+    /*padding: 1rem;*/
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: auto;
+    /*box-sizing: border-box;*/
+  }
+  .img-div img{
+    max-width: inherit;
+    display: block;
   }
   .fixation-handle{
     position: absolute;

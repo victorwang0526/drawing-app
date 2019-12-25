@@ -6,13 +6,15 @@
       <ion-row class="task-full">
         <ion-col v-for="i in [0, 1, 2]" :key="i" :class="imgClass(i)"
                  @click="openDetail(i)">
-          <div style="height: 50%;">
-            <img :src="'http://47.110.45.52:8085' + getTaskProp(i, 'map1')" class="task-img">
-          </div>
-          <div style="height: 50%;" class="task-info">
-            <div class="task-title">{{getTaskProp(i, 'name')}}</div>
-            <div class="task-desc">
-              {{getTaskProp(i, 'description')}}
+          <div class="flex-middle">
+            <div class="mid-pic">
+              <img :src="'http://47.110.45.52:8085' + getTaskProp(i, 'map1')" class="task-img">
+            </div>
+            <div class="task-info">
+              <div class="task-title">{{getTaskProp(i, 'name')}}</div>
+              <div class="task-desc">
+                {{getTaskProp(i, 'description')}}
+              </div>
             </div>
           </div>
         </ion-col>
@@ -97,14 +99,34 @@ export default class Home extends Vue{
   }
   .task-title {
     margin-bottom: 30px;
-    font-size: 2em;
+    font-size: 4rem;
     font-weight: 700;
     font-family: roboto slab,helvetica neue,Helvetica,hiragino sans gb,Arial,sans-serif;
   }
   .task-desc {
     min-height: 44px;
-    font-size: 1em;
+    font-size: 2rem;
     width: 80%;
     margin: 0 auto;
+  }
+  .flex-middle{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    overflow-x: hidden;
+  }
+  .mid-pic{
+    width: 12rem;
+    height: 12rem;
+    margin: 0 auto 3rem;
+  }
+  .mid-pic img{
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
   }
 </style>
