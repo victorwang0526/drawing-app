@@ -9,10 +9,10 @@ import '@ionic/core/css/ionic.bundle.css';
 import { defineCustomElements } from '@ionic/pwa-elements/loader'; // add this line
 
 import { addIcons } from "ionicons";
-import { construct, home } from "ionicons/icons";
+import { construct, home, redo, undo, remove, add } from "ionicons/icons";
 
 // add vant
-import { Button } from 'vant';
+import { Button, Tabs, Tab } from 'vant';
 
 // add ionic
 addIcons({
@@ -20,6 +20,14 @@ addIcons({
   "md-construct": construct.md,
   "ios-home": home.ios,
   "md-home": home.md,
+  "ios-redo": redo.ios,
+  "md-redo": redo.md,
+  "ios-undo": undo.ios,
+  "md-undo": undo.md,
+  "ios-remove": remove.ios,
+  "md-remove": remove.md,
+  "ios-add": add.ios,
+  "md-add": add.md,
 });
 
 Vue.use(IonicVue);
@@ -28,7 +36,9 @@ Vue.config.ignoredElements = [/^ion-/];
 defineCustomElements(window);  // add this line
 
 // add vant
-Vue.use(Button);
+Vue.use(Button)
+  .use(Tabs)
+  .use(Tab);
 
 // default config
 Vue.config.productionTip = false
