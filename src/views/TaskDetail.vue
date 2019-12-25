@@ -40,7 +40,6 @@ export default class TaskDetail extends Vue {
 
     tab2Change(ev: any) {
         this.tab2Actived = ev.detail.value
-        console.log(`${this.tab2Actived}`)
     }
 }
 </script>
