@@ -1,0 +1,63 @@
+branches:
+  only:
+  - master
+  - /v\d+\.\d+[a-z]/
+dist: trusty
+matrix:
+  include:
+  - os: linux
+    sudo: required
+    language: android
+    android:
+      components:
+      - tools
+      - platform-tools
+      - build-tools-26.0.2
+      - android-25
+      - extra-google-google_play_services
+      - extra-google-m2repository
+      - extra-android-m2repository
+    licenses:
+    - android-sdk-preview-license-.+
+    - android-sdk-license-.+
+    - google-gdk-license-.+
+    before_cache:
+    - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+    - rm -f  $HOME/.gradle/caches/transforms-1/transforms-1.lock
+    - rm -rf $HOME/.gradle/caches/3.5/fileHashes/
+    - rm -rf $HOME/.gradle/caches/*/plugin-resolution/
+    cache:
+      directories:
+      - "$HOME/.gradle/caches/"
+      - "$HOME/.gradle/wrapper/"
+    before_install:
+    - export LANG=en_US.UTF-8
+    - nvm install 10.15.3
+    - npm install -g ionic @vue/cli
+    - yes | sdkmanager "platforms;android-27"
+    - cd $TRAVIS_BUILD_DIR
+    - gem install fir-cli
+    - rm -rf ./release/android/*.apk
+    script:
+    - npm i
+    - npm run build
+    - npx cap add android
+    - cd android
+    - ./gradlew aR
+    - jarsigner -verbose -sigalg SHA256withRSA -digestalg SHA1 -keystore ../drawing.keystore -storepass drawing_app -signedjar ../release/android/app-release-signed.apk ./app/build/outputs/apk/release/app-release-unsigned.apk drawing.keystore
+    - cd $TRAVIS_BUILD_DIR
+    - fir login 1a8cdbd33bf403f19177476ca7f5cec0
+    - fir me
+    - fir publish ./release/android/app-release-signed.apk
+    - git config --local user.name "victorwang0526"
+    - git config --local user.email "fengxuanwang@qq.com"
+    - export TRAVIS_TAG=${TRAVIS_TAG:-$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)}
+    - git tag $TRAVIS_TAG
+    deploy:
+      provider: releases
+      skip_cleanup: true
+      api_key: $GH_TOKEN
+      file_glob: true
+      file: release/android/app-release-signed.apk
+      on:
+        tags: true
