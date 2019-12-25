@@ -41,7 +41,8 @@ matrix:
     script:
     - npm i
     - npm run build
-    - npx cap add android
+    - npx cap sync
+    - npx cap copy
     - cd android
     - ./gradlew aR
     - jarsigner -verbose -sigalg SHA256withRSA -digestalg SHA1 -keystore ../drawing.keystore -storepass drawing_app -signedjar ../release/android/app-release-signed.apk ./app/build/outputs/apk/release/app-release-unsigned.apk drawing.keystore
