@@ -1,15 +1,24 @@
 <template>
-  <div class="web-tips">时间、IP</div>
+  <div class="web-tips">{{ip}}</div>
 </template>
 <script lang="ts">
 
 import {Component, Vue} from "vue-property-decorator";
+import axios from "axios";
 
 @Component({
   name: 'web-tips'
 })
 export default class extends Vue {
 
+  ip: string = '';
+  mounted() {
+    axios
+      .get('task/ip')
+      .then((response: any) => {
+        (this.ip = response.data)
+      })
+  }
 }
 </script>
 <style>

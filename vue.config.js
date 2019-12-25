@@ -5,6 +5,9 @@ module.exports = {
     parallel: false,
     outputDir: 'dist',
     publicPath: '/',
+    devServer: {
+      proxy: 'http://47.110.45.52:8085/api/'
+    },
     chainWebpack: config => {
         config.module
             .rule('ts')

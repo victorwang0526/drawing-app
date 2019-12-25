@@ -7,7 +7,7 @@
         <ion-col v-for="i in [0, 1, 2]" :key="i" :class="imgClass(i)"
                  @click="openDetail(i)">
           <div style="height: 50%;">
-            <img src="../assets/1.png" class="task-img">
+            <img :src="'http://47.110.45.52:8085' + getTaskProp(i, 'map1')" class="task-img">
           </div>
           <div style="height: 50%;" class="task-info">
             <div class="task-title">{{getTaskProp(i, 'name')}}</div>
@@ -27,6 +27,7 @@ import { Component, Vue } from 'vue-property-decorator'
 import HelloWorld from '@/components/HelloWorld.vue'
 import WebTitle from '@/components/WebTitle.vue'
 import WebTips from "@/components/WebTips.vue";
+import axios from "axios";
 
 @Component({
   name: 'home',
@@ -37,11 +38,15 @@ import WebTips from "@/components/WebTips.vue";
   }
 })
 export default class Home extends Vue{
-  tasks: Array<any> = [
-    {img: 'assets/1.png', name: '任务1', description: '任务描述1', seq: 1},
-    {img: 'assets/1.png', name: '任务2', description: '任务描述2', seq: 2},
-    {img: 'assets/1.png', name: '任务3', description: '任务描述3', seq: 2},
-  ]
+
+  mounted() {
+    axios
+      .get('task/task')
+      .then((response: any) => {
+        this.tasks = response.data.list
+      })
+  }
+  tasks: Array<any> = []
 
   imgClass(index: number) {
     const ckey = 'task-col-' + (index+1)
