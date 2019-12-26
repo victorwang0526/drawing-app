@@ -7,10 +7,10 @@
                @click="openDetail(i)">
         <div class="flex-middle">
           <div class="mid-pic">
-              <img :src="'http://47.110.45.52:8085' + getTaskProp(i, 'map1')" class="task-img">
+              <img v-if="getTaskProp(i, 'map1') != ''" :src="'http://47.110.45.52:8085' + getTaskProp(i, 'map1')" class="task-img">
           </div>
           <div class="task-info">
-            <div class="task-title">{{getTaskProp(i, 'name')}}</div>
+            <div class="task-title">{{getTaskProp(i, 'name') === '' ? '暂无任务' : getTaskProp(i, 'name')}}</div>
             <div class="task-desc">
               {{getTaskProp(i, 'description')}}
             </div>
@@ -43,6 +43,7 @@ export default class Home extends Vue{
     axios
       .get('task/task')
       .then((response: any) => {
+          debugger
         this.tasks = response.data.list
       })
   }
@@ -58,7 +59,7 @@ export default class Home extends Vue{
 
   getTaskProp(index: number, key: string) {
     if(index > this.tasks.length -1) {
-      return '暂无任务'
+      return ''
     }
     return this.tasks[index][key]
   }
