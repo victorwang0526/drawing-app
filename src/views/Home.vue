@@ -43,7 +43,6 @@ export default class Home extends Vue{
     axios
       .get('task/task')
       .then((response: any) => {
-          debugger
         this.tasks = response.data.list
       })
   }
