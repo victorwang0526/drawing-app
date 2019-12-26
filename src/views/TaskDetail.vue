@@ -39,7 +39,17 @@ import BackButton from "@/components/BackButton.vue";
 })
 export default class TaskDetail extends Vue {
 
-    tab2Actived: string = 't1';
+    tab2Actived: string = '';
+    task: any = {
+        map1: '',
+        map2: '',
+        map3: '',
+        map4: ''
+    };
+    mounted() {
+        this.tab2Actived = 't21'
+        this.task = this.$route.params
+    }
     goBack() {
         this.$router.back()
     }
