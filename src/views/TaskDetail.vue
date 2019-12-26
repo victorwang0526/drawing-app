@@ -41,7 +41,6 @@ export default class TaskDetail extends Vue {
 
     tab2Actived: string = 't1';
     goBack() {
-        console.log('back')
         this.$router.back()
     }
     tab2Change(ev: any) {
