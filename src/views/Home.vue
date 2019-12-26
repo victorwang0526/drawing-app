@@ -41,7 +41,7 @@ export default class Home extends Vue{
 
   mounted() {
     axios
-      .get('task/task')
+      .get('http://47.110.45.52:8085/api/task/task')
       .then((response: any) => {
         this.tasks = response.data.list
       })

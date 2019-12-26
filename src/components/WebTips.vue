@@ -23,7 +23,7 @@ export default class extends Vue {
         this.currentTime = moment().format('YYYY-MM-DD hh:mm:ss')
     }, 1000)
 
-    axios.get('task/ip')
+    axios.get('http://47.110.45.52:8085/api/task/ip')
         .then((response: any) => {
             (this.ip = response.data)
         })
