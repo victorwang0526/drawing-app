@@ -1,5 +1,6 @@
 <template>
   <div class="task-detail">
+    <back-button></back-button>
     <ion-grid style="width: 100%; height: 100%;">
       <ion-row style="height: 100%; width: 100%;">
         <ion-col>
@@ -27,17 +28,22 @@
 
 import {Vue, Component} from "vue-property-decorator";
 import Drawing from '@/components/Drawing.vue'
+import BackButton from "@/components/BackButton.vue";
 
 @Component({
     name: 'task-detail',
     components: {
-        Drawing
+        Drawing,
+        BackButton
     }
 })
 export default class TaskDetail extends Vue {
 
     tab2Actived: string = 't1';
-
+    goBack() {
+        console.log('back')
+        this.$router.back()
+    }
     tab2Change(ev: any) {
         this.tab2Actived = ev.detail.value
     }

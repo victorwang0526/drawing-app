@@ -2,24 +2,22 @@
   <div class="home">
     <web-title></web-title>
     <web-tips></web-tips>
-    <ion-grid class="task-full">
-      <ion-row class="task-full">
-        <ion-col v-for="i in [0, 1, 2]" :key="i" :class="imgClass(i)"
-                 @click="openDetail(i)">
-          <div class="flex-middle">
-            <div class="mid-pic">
+    <van-row class="task-full">
+      <van-col span="8" v-for="i in [0, 1, 2]" style="height: 100%;" :key="i" :class="imgClass(i)"
+               @click="openDetail(i)">
+        <div class="flex-middle">
+          <div class="mid-pic">
               <img :src="'http://47.110.45.52:8085' + getTaskProp(i, 'map1')" class="task-img">
-            </div>
-            <div class="task-info">
-              <div class="task-title">{{getTaskProp(i, 'name')}}</div>
-              <div class="task-desc">
-                {{getTaskProp(i, 'description')}}
-              </div>
+          </div>
+          <div class="task-info">
+            <div class="task-title">{{getTaskProp(i, 'name')}}</div>
+            <div class="task-desc">
+              {{getTaskProp(i, 'description')}}
             </div>
           </div>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
+        </div>
+      </van-col>
+    </van-row>
   </div>
 </template>
 
