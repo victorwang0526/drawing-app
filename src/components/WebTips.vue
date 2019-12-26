@@ -1,6 +1,6 @@
 <template>
   <div class="web-tips">
-    <div>IP: {{ip}}</div>
+    <div @click="$router.push('/test-scroll')">IP: {{ip}}</div>
     <div>{{currentTime}}</div>
   </div>
 </template>

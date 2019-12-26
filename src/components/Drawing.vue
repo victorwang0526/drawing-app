@@ -15,7 +15,9 @@
       </ion-button>
     </div>
     <div class="img-div">
-      <img src="../assets/1.png" :style="{transform: `rotate(${this.rotate}deg) scale(${this.zoom})`}">
+      <div style="overflow: auto;">
+        <img src="../assets/1.png" :style="{transform: `rotate(${this.rotate}deg) scale(${this.zoom})`}">
+      </div>
     </div>
   </ion-content>
 </template>
@@ -26,7 +28,7 @@ import {Component, Vue} from "vue-property-decorator";
   name: 'drawing'
 })
 export default class extends Vue{
-  zoom: number = 1;
+  zoom: number = 1.4;
   zoomStep: number = 0.2;
   rotate: number = 0;
   rotateStep: number = 90;
