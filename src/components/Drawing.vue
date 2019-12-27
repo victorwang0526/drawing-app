@@ -1,5 +1,5 @@
 <template>
-  <div style="height: 63rem; width: 59rem; overflow: auto;">
+  <div :style="{height: h + 'px', width: w + 'px', overflow: 'auto',}">
     <div class="fixation-handle">
       <ion-button fill="clear" size="large" @click="zoomChange(1)">
         <ion-icon slot="icon-only" name="add"></ion-icon>
@@ -39,6 +39,8 @@ export default class extends Vue{
   img: any;
   @Prop({default: 'cid'}) cid: string | undefined
   @Prop({default: ''}) imgUrl: string | undefined
+  @Prop({default: 0}) w: number | undefined
+  @Prop({default: 0}) h: number | undefined
 
   mounted() {
     this.canvas = this.$refs[this.cid + ''];

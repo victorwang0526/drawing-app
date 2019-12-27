@@ -9,7 +9,7 @@
               <ion-label>图纸</ion-label>
             </ion-segment-button>
           </ion-segment>
-          <drawing :cid="'tz1'" :imgUrl="task.map1"></drawing>
+          <drawing :cid="'tz1'" :imgUrl="task.map1" :w="w" :h="h"></drawing>
         </ion-col>
         <ion-col>
           <ion-segment color="success" @ionChange="tab2Change($event)">
@@ -17,9 +17,9 @@
             <ion-segment-button v-if="task.map3 !== ''" value="t22"><ion-label>操作图纸</ion-label></ion-segment-button>
             <ion-segment-button v-if="task.map4 !== ''" value="t23"><ion-label>操作图纸2</ion-label></ion-segment-button>
           </ion-segment>
-          <drawing v-if="task.map2 !== ''" v-show="tab2Actived === 't21'" :cid="'tz21'" :imgUrl="task.map2"></drawing>
-          <drawing v-if="task.map3 !== ''" v-show="tab2Actived === 't22'" :cid="'tz22'" :imgUrl="task.map3"></drawing>
-          <drawing v-if="task.map4 !== ''" v-show="tab2Actived === 't23'" :cid="'tz23'" :imgUrl="task.map4"></drawing>
+          <drawing v-if="task.map2 !== ''" v-show="tab2Actived === 't21'" :cid="'tz21'" :imgUrl="task.map2" :w="w" :h="h"></drawing>
+          <drawing v-if="task.map3 !== ''" v-show="tab2Actived === 't22'" :cid="'tz22'" :imgUrl="task.map3" :w="w" :h="h"></drawing>
+          <drawing v-if="task.map4 !== ''" v-show="tab2Actived === 't23'" :cid="'tz23'" :imgUrl="task.map4" :w="w" :h="h"></drawing>
         </ion-col>
       </ion-row>
     </ion-grid>
@@ -40,17 +40,25 @@ import BackButton from "@/components/BackButton.vue";
 })
 export default class TaskDetail extends Vue {
 
-    tab2Actived: string = '';
-    task: any = {
-        map1: '',
-        map2: '',
-        map3: '',
-        map4: ''
-    };
-    beforeMount() {
-        this.tab2Actived = 't21'
-        this.task = this.$route.params.task
-    }
+  tab2Actived: string = '';
+  w: any = 0
+  h: any = 0
+  hh: number = 0
+  task: any = {
+      map1: '',
+      map2: '',
+      map3: '',
+      map4: ''
+  };
+  beforeMount() {
+
+    this.w = Number.parseInt(this.$route.params.w) / 2 - 15
+    this.h = Number.parseInt(this.$route.params.h) - 65
+    this.tab2Actived = 't21'
+    this.task = this.$route.params.task
+  }
+  mounted() {
+  }
     goBack() {
         this.$router.back()
     }

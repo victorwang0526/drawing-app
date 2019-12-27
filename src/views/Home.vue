@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="home" ref="home">
     <web-title></web-title>
     <web-tips></web-tips>
     <van-row class="task-full">
@@ -31,7 +31,6 @@ import HelloWorld from '@/components/HelloWorld.vue'
 import WebTitle from '@/components/WebTitle.vue'
 import WebTips from "@/components/WebTips.vue";
 import axios from "axios";
-
 @Component({
   name: 'home',
   components: {
@@ -41,6 +40,8 @@ import axios from "axios";
   }
 })
 export default class Home extends Vue{
+  w: string = '0'
+  h: string = '0'
 
   mounted() {
     axios
@@ -72,11 +73,16 @@ export default class Home extends Vue{
   }
 
   openDetail(i: number) {
-      this.$router.push({name: 'task-detail', params: {task: this.tasks[i]}})
+
+    const home:any = this.$refs.home
+
+    this.w = home.offsetWidth
+    this.h = home.offsetHeight
+    this.$router.push({name: 'task-detail', params: {task: this.tasks[i], w: this.w, h: this.h}})
   }
 }
 </script>
-<style>
+<style scoped>
   .home {
     width: 100%;
     height: 100%;
