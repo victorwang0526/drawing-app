@@ -64,7 +64,7 @@ export default class Home extends Vue{
   }
 
   openDetail(i: number) {
-      this.$router.push({name: 'task-detail', params: this.tasks[i]})
+      this.$router.push({name: 'task-detail', params: {task: this.tasks[i]}})
   }
 }
 </script>

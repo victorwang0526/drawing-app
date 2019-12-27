@@ -9,7 +9,7 @@
               <ion-label>图纸</ion-label>
             </ion-segment-button>
           </ion-segment>
-          <drawing :cid="'tz1'"></drawing>
+          <drawing :cid="'tz1'" :imgUrl="task.map1"></drawing>
         </ion-col>
         <ion-col>
           <ion-segment color="success" @ionChange="tab2Change($event)">
@@ -18,7 +18,7 @@
             </ion-segment-button>
             <ion-segment-button value="t2"><ion-label>操作图纸</ion-label></ion-segment-button>
           </ion-segment>
-          <drawing :cid="'tz2'"></drawing>
+          <drawing :cid="'tz2'" :imgUrl="task.map2"></drawing>
         </ion-col>
       </ion-row>
     </ion-grid>
@@ -46,9 +46,9 @@ export default class TaskDetail extends Vue {
         map3: '',
         map4: ''
     };
-    mounted() {
+    beforeMount() {
         this.tab2Actived = 't21'
-        this.task = this.$route.params
+        this.task = this.$route.params.task
     }
     goBack() {
         this.$router.back()

@@ -38,13 +38,14 @@ export default class extends Vue{
   context: any;
   img: any;
   @Prop({default: 'cid'}) cid: string | undefined
+  @Prop({default: ''}) imgUrl: string | undefined
 
   mounted() {
     this.canvas = this.$refs[this.cid + ''];
     this.context = this.canvas.getContext('2d')
     this.img = new Image;
     this.img.onload = this.drawImg
-    this.img.src = 'http://47.110.45.52:8085/static/upload/20191126/8de52a2e12d44c47973fcc260c986761.png';
+    this.img.src = 'http://47.110.45.52:8085' + this.imgUrl;
   }
   drawImg() {
     let tx = 0
