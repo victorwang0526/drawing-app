@@ -17,9 +17,12 @@
             <ion-segment-button v-if="task.map3 !== ''" value="t22"><ion-label>操作图纸</ion-label></ion-segment-button>
             <ion-segment-button v-if="task.map4 !== ''" value="t23"><ion-label>操作图纸2</ion-label></ion-segment-button>
           </ion-segment>
-          <drawing v-if="task.map2 !== ''" v-show="tab2Actived === 't21'" :cid="'tz21'" :imgUrl="task.map2" :w="w" :h="h"></drawing>
-          <drawing v-if="task.map3 !== ''" v-show="tab2Actived === 't22'" :cid="'tz22'" :imgUrl="task.map3" :w="w" :h="h"></drawing>
-          <drawing v-if="task.map4 !== ''" v-show="tab2Actived === 't23'" :cid="'tz23'" :imgUrl="task.map4" :w="w" :h="h"></drawing>
+          <drawing v-if="task.map2 !== ''" v-show="tab2Actived === 't21'"
+                   :cid="'tz21'" :imgUrl="task.map2" :w="w" :h="h"></drawing>
+          <drawing v-if="task.map3 !== ''" v-show="tab2Actived === 't22'"
+                   :cid="'tz22'" :imgUrl="task.map3" :w="w" :h="h"></drawing>
+          <drawing v-if="task.map4 !== ''" v-show="tab2Actived === 't23'"
+                   :cid="'tz23'" :imgUrl="task.map4" :w="w" :h="h"></drawing>
         </ion-col>
       </ion-row>
     </ion-grid>
@@ -59,12 +62,12 @@ export default class TaskDetail extends Vue {
   }
   mounted() {
   }
-    goBack() {
-        this.$router.back()
-    }
-    tab2Change(ev: any) {
-        this.tab2Actived = ev.detail.value
-    }
+  goBack() {
+      this.$router.back()
+  }
+  tab2Change(ev: any) {
+      this.tab2Actived = ev.detail.value
+  }
 }
 </script>
 <style scoped>

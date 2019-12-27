@@ -1,16 +1,16 @@
 <template>
   <div :style="{height: h + 'px', width: w + 'px', overflow: 'auto',}">
     <div class="fixation-handle">
-      <ion-button fill="clear" size="large" @click="zoomChange(1)">
+      <ion-button fill="clear" size="large" color="light" @click="zoomChange(1)">
         <ion-icon slot="icon-only" name="add"></ion-icon>
       </ion-button>
-      <ion-button fill="clear" size="large" @click="zoomChange(-1)">
+      <ion-button fill="clear" size="large" color="light" @click="zoomChange(-1)">
         <ion-icon slot="icon-only" name="remove"></ion-icon>
       </ion-button>
-      <ion-button fill="clear" size="large" @click="rotateChange(1)">
+      <ion-button fill="clear" size="large" color="light" @click="rotateChange(1)">
         <ion-icon slot="icon-only" name="redo"></ion-icon>
       </ion-button>
-      <ion-button fill="clear" size="large" @click="rotateChange(-1)">
+      <ion-button fill="clear" size="large" color="light" @click="rotateChange(-1)">
         <ion-icon slot="icon-only" name="undo"></ion-icon>
       </ion-button>
     </div>
@@ -20,6 +20,9 @@
 <!--      </div>-->
 <!--    </div>-->
     <canvas :id="cid" :ref="cid"></canvas>
+    <div v-if="showLoading" class="wrapper-loading" @click.stop>
+      <img src="../assets/loading.svg" alt="">
+    </div>
   </div>
 </template>
 <script lang="ts">
@@ -33,6 +36,7 @@ export default class extends Vue{
   zoomStep: number = 0.2;
   rotate: number = 0;
   rotateStep: number = 90;
+  showLoading: boolean = true
 
   canvas: any;
   context: any;
@@ -50,6 +54,7 @@ export default class extends Vue{
     this.img.src = 'http://47.110.45.52:8085' + this.imgUrl;
   }
   drawImg() {
+    this.showLoading = false
     let tx = 0
     let ty = 0
     if(this.rotate === 0 || this.rotate === 180) {
@@ -86,7 +91,18 @@ export default class extends Vue{
   }
 }
 </script>
-<style>
+<style scoped>
+  .wrapper-loading {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    z-index: 9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
   .img-div {
     width: 100%;
     height: 100%;
@@ -107,7 +123,7 @@ export default class extends Vue{
     position: absolute;
     right: 2rem;
     bottom: 10%;
-    z-index: 9;
+    z-index: 1;
     background: rgba(0,0,0,.6);
   }
 </style>

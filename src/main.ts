@@ -12,7 +12,7 @@ import { addIcons } from "ionicons";
 import { construct, home, redo, undo, remove, add, close} from "ionicons/icons";
 
 // add vant
-import { Button, Tabs, Tab, Row, Col, Image, Loading } from 'vant';
+import { Button, Tabs, Tab, Row, Col, Image, Loading, Overlay } from 'vant';
 
 // add ionic
 addIcons({
@@ -44,7 +44,8 @@ Vue.use(Button)
   .use(Row)
   .use(Col)
   .use(Image)
-  .use(Loading);
+  .use(Loading)
+  .use(Overlay);
 
 // default config
 Vue.config.productionTip = false
