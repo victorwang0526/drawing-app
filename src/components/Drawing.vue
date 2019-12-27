@@ -1,5 +1,5 @@
 <template>
-  <ion-content>
+  <div style="height: 63rem; width: 59rem; overflow: auto;">
     <div class="fixation-handle">
       <ion-button fill="clear" size="large" @click="zoomChange(1)">
         <ion-icon slot="icon-only" name="add"></ion-icon>
@@ -14,33 +14,72 @@
         <ion-icon slot="icon-only" name="undo"></ion-icon>
       </ion-button>
     </div>
-    <div class="img-div">
-      <div style="overflow: auto;">
-        <img src="../assets/1.png" :style="{transform: `rotate(${this.rotate}deg) scale(${this.zoom})`}">
-      </div>
-    </div>
-  </ion-content>
+<!--    <div class="img-div">-->
+<!--      <div style="overflow: auto;">-->
+<!--        <img src="../assets/1.png" :style="{transform: `rotate(${this.rotate}deg) scale(${this.zoom})`}">-->
+<!--      </div>-->
+<!--    </div>-->
+    <canvas :id="cid" :ref="cid"></canvas>
+  </div>
 </template>
 <script lang="ts">
-import {Component, Vue} from "vue-property-decorator";
+import {Component, Vue, Prop} from "vue-property-decorator";
 
 @Component({
   name: 'drawing'
 })
 export default class extends Vue{
-  zoom: number = 1.4;
+  scaleSize: number = 1;
   zoomStep: number = 0.2;
   rotate: number = 0;
   rotateStep: number = 90;
 
+  canvas: any;
+  context: any;
+  img: any;
+  @Prop({default: 'cid'}) cid: string | undefined
+
+  mounted() {
+    this.canvas = this.$refs[this.cid + ''];
+    this.context = this.canvas.getContext('2d')
+    this.img = new Image;
+    this.img.onload = this.drawImg
+    this.img.src = 'http://47.110.45.52:8085/static/upload/20191126/8de52a2e12d44c47973fcc260c986761.png';
+  }
+  drawImg() {
+    let tx = 0
+    let ty = 0
+    if(this.rotate === 0 || this.rotate === 180) {
+        this.canvas.width = this.img.width * this.scaleSize
+        this.canvas.height = this.img.height * this.scaleSize
+        if(this.rotate === 180) {
+            ty = this.img.height * this.scaleSize
+            tx = this.img.width * this.scaleSize
+        }
+    }else {
+        this.canvas.width = this.img.height * this.scaleSize
+        this.canvas.height = this.img.width * this.scaleSize
+        if(this.rotate === 90) {
+            tx = this.img.height * this.scaleSize
+        }else if(this.rotate === 270) {
+            ty = this.img.width * this.scaleSize
+        }
+    }
+    this.context.translate(tx, ty)
+    this.context.scale(this.scaleSize, this.scaleSize);
+    this.context.rotate(this.rotate * Math.PI / 180)
+    this.context.drawImage(this.img, 0, 0); // Or at whatever offset you like
+  }
   zoomChange(seed: number) {
-    this.zoom = this.zoom + this.zoomStep * seed;
+    this.scaleSize = this.scaleSize * (1 + seed * this.zoomStep)
+    this.drawImg()
   }
   rotateChange(seed: number) {
     this.rotate = this.rotate + this.rotateStep * seed;
     if(this.rotate < 0 || this.rotate >= 360) {
         this.rotate = 0
     }
+    this.drawImg()
   }
 }
 </script>

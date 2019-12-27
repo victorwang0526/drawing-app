@@ -9,7 +9,7 @@
               <ion-label>图纸</ion-label>
             </ion-segment-button>
           </ion-segment>
-          <drawing></drawing>
+          <drawing :cid="'tz1'"></drawing>
         </ion-col>
         <ion-col>
           <ion-segment color="success" @ionChange="tab2Change($event)">
@@ -18,7 +18,7 @@
             </ion-segment-button>
             <ion-segment-button value="t2"><ion-label>操作图纸</ion-label></ion-segment-button>
           </ion-segment>
-          <drawing></drawing>
+          <drawing :cid="'tz2'"></drawing>
         </ion-col>
       </ion-row>
     </ion-grid>
