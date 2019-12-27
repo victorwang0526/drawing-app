@@ -7,7 +7,10 @@
                @click="openDetail(i)">
         <div class="flex-middle">
           <div class="mid-pic">
-              <img v-if="getTaskProp(i, 'map1') != ''" :src="'http://47.110.45.52:8085' + getTaskProp(i, 'map1')" class="task-img">
+            <img v-if="i === 0 && i < tasks.length" src="../assets/img1.svg" class="task-img">
+            <img v-if="i === 1 && i < tasks.length" src="../assets/img2.svg" class="task-img">
+            <img v-if="i === 2 && i < tasks.length" src="../assets/img3.svg" class="task-img">
+            <img v-if="tasks.length <= i" src="../assets/disable.svg" class="task-img">
           </div>
           <div class="task-info">
             <div class="task-title">{{getTaskProp(i, 'name') === '' ? '暂无任务' : getTaskProp(i, 'name')}}</div>
@@ -47,6 +50,11 @@ export default class Home extends Vue{
       })
   }
   tasks: Array<any> = []
+  imgs = [
+      '../assets/img1.svg',
+      '../assets/img2.svg',
+      '../assets/img3.svg'
+  ]
 
   imgClass(index: number) {
     const ckey = 'task-col-' + (index+1)
