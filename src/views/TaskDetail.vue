@@ -13,12 +13,13 @@
         </ion-col>
         <ion-col>
           <ion-segment color="success" @ionChange="tab2Change($event)">
-            <ion-segment-button value="t1" checked>
-              <ion-label>工艺图纸</ion-label>
-            </ion-segment-button>
-            <ion-segment-button value="t2"><ion-label>操作图纸</ion-label></ion-segment-button>
+            <ion-segment-button v-if="task.map2 !== ''" value="t21" checked><ion-label>工艺图纸</ion-label></ion-segment-button>
+            <ion-segment-button v-if="task.map3 !== ''" value="t22"><ion-label>操作图纸</ion-label></ion-segment-button>
+            <ion-segment-button v-if="task.map4 !== ''" value="t23"><ion-label>操作图纸2</ion-label></ion-segment-button>
           </ion-segment>
-          <drawing :cid="'tz2'" :imgUrl="task.map2"></drawing>
+          <drawing v-if="task.map2 !== ''" v-show="tab2Actived === 't21'" :cid="'tz21'" :imgUrl="task.map2"></drawing>
+          <drawing v-if="task.map3 !== ''" v-show="tab2Actived === 't22'" :cid="'tz22'" :imgUrl="task.map3"></drawing>
+          <drawing v-if="task.map4 !== ''" v-show="tab2Actived === 't23'" :cid="'tz23'" :imgUrl="task.map4"></drawing>
         </ion-col>
       </ion-row>
     </ion-grid>
