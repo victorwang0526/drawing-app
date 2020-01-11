@@ -37,17 +37,6 @@ export default class extends Vue {
           text: JSON.stringify(err)
         });
     })
-
-  axios.get('http://47.110.45.52:8082/api/User/Login/?LoginName=13508096897&Password=123456&DeviceID=')
-    .then(res => {
-    Toast.show({
-        text: 'TEST SUCCESS'
-    })
-  }).catch(err => {
-    Toast.show({
-        text: JSON.stringify(err)
-    })
-  })
   }
 }
 </script>
