@@ -31,6 +31,9 @@ import HelloWorld from '@/components/HelloWorld.vue'
 import WebTitle from '@/components/WebTitle.vue'
 import WebTips from "@/components/WebTips.vue";
 import axios from "axios";
+import { Plugins } from '@capacitor/core';
+const { Toast } = Plugins;
+
 @Component({
   name: 'home',
   components: {
@@ -48,6 +51,9 @@ export default class Home extends Vue{
       .get('http://47.110.45.52:8085/api/task/task')
       .then((response: any) => {
         this.tasks = response.data.list
+        Toast.show({
+          text: JSON.stringify(this.tasks)
+        });
       })
   }
   tasks: Array<any> = []
