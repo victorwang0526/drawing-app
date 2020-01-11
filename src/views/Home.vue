@@ -1,26 +1,27 @@
 <template>
   <div class="home" ref="home">
-    <web-title></web-title>
-    <web-tips></web-tips>
-    <van-row class="task-full">
-      <van-col span="8" v-for="i in [0, 1, 2]" style="height: 100%;" :key="i" :class="imgClass(i)"
-               @click="openDetail(i)">
-        <div class="flex-middle">
-          <div class="mid-pic">
-            <img v-if="i === 0 && i < tasks.length" src="../assets/img1.svg" class="task-img">
-            <img v-if="i === 1 && i < tasks.length" src="../assets/img2.svg" class="task-img">
-            <img v-if="i === 2 && i < tasks.length" src="../assets/img3.svg" class="task-img">
-            <img v-if="tasks.length <= i" src="../assets/disable.svg" class="task-img">
-          </div>
-          <div class="task-info">
-            <div class="task-title">{{getTaskProp(i, 'name') === '' ? '暂无任务' : getTaskProp(i, 'name')}}</div>
-            <div class="task-desc">
-              {{getTaskProp(i, 'description')}}
-            </div>
-          </div>
-        </div>
-      </van-col>
-    </van-row>
+    <span>test</span>
+<!--    <web-title></web-title>-->
+<!--    <web-tips></web-tips>-->
+<!--    <van-row class="task-full">-->
+<!--      <van-col span="8" v-for="i in [0, 1, 2]" style="height: 100%;" :key="i" :class="imgClass(i)"-->
+<!--               @click="openDetail(i)">-->
+<!--        <div class="flex-middle">-->
+<!--          <div class="mid-pic">-->
+<!--            <img v-if="i === 0 && i < tasks.length" src="../assets/img1.svg" class="task-img">-->
+<!--            <img v-if="i === 1 && i < tasks.length" src="../assets/img2.svg" class="task-img">-->
+<!--            <img v-if="i === 2 && i < tasks.length" src="../assets/img3.svg" class="task-img">-->
+<!--            <img v-if="tasks.length <= i" src="../assets/disable.svg" class="task-img">-->
+<!--          </div>-->
+<!--          <div class="task-info">-->
+<!--            <div class="task-title">{{getTaskProp(i, 'name') === '' ? '暂无任务' : getTaskProp(i, 'name')}}</div>-->
+<!--            <div class="task-desc">-->
+<!--              {{getTaskProp(i, 'description')}}-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </van-col>-->
+<!--    </van-row>-->
   </div>
 </template>
 
